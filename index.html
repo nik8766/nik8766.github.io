@@ -3,87 +3,397 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Cybersecurity Portfolio</title>
-    <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px; line-height: 1.6;
-        }
-        .container { max-width: 800px; margin: auto; }
-        h1, h2 { color: #0099ff; border-bottom: 2px solid #0099ff; padding-bottom: 10px; }
-        a { color: #00c3ff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .project-card { background-color: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
-        .project-card h3 { margin-top: 0; color: #ffffff; }
-        .skills-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-        .skills-list li { background-color: #333; padding: 5px 12px; border-radius: 15px; font-size: 0.9em; }
-        .connect-links a { margin-right: 15px; }
-    </style>
+    <title>Nikhil Makwana - Cybersecurity Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <!-- REPLACE THIS CONTENT WITH YOURS -->
-            <h1>Your Name</h1>
-            <p>Computer Security & Investigations Graduate | Seeking Entry-Level Cybersecurity Roles</p>
-            <p>Passionate about network security, digital forensics, and incident response. Eager to apply my hands-on skills from Fleming College to protect digital assets and contribute to a dedicated security team.</p>
-        </header>
-        
-        <main>
-            <section id="projects">
-                <h2>My Projects</h2>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">Nikhil Makwana</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-                <!-- PROJECT 1: COPY AND PASTE THIS BLOCK FOR EACH PROJECT -->
-                <div class="project-card">
-                    <h3>Project Title 1: Home Lab Network Security Setup</h3>
-                    <p>Designed and deployed a virtualized home lab environment using VMware to simulate a corporate network. Implemented a pfSense firewall, configured VLANs, and deployed Security Onion for network traffic monitoring and intrusion detection.</p>
-                    <a href="https://github.com/your-username/your-project-repo-link" target="_blank">View on GitHub</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-up">
+                <div class="hero-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                </div>
+                <h1 class="hero-title">
+                    <span class="typing-text">Nikhil Makwana</span>
+                </h1>
+                <h2 class="hero-subtitle">Cybersecurity Graduate | IT Risk & Network Security Enthusiast</h2>
+                <p class="hero-tagline">"Turning security challenges into digital resilience."</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <div class="arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About Me</h2>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <p>I am a recent graduate from Fleming College with an Advanced Diploma in Computer Security and Investigations, equipped with comprehensive knowledge in cybersecurity principles, network security, and digital forensics.</p>
+                    <p>My passion lies in identifying vulnerabilities, implementing robust security measures, and staying ahead of emerging threats in the digital landscape.</p>
+                    <div class="education">
+                        <h3>Education</h3>
+                        <div class="education-item">
+                            <h4>Advanced Diploma in Computer Security and Investigations</h4>
+                            <p class="institution">Fleming College</p>
+                            <p class="date">2022 - 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats" data-aos="fade-left">
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-text">Security Labs Completed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-text">Passion for Cybersecurity</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-text">Security Mindset</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <h3><i class="fas fa-network-wired"></i> Technical Skills</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Network Security</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Vulnerability Assessment</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Incident Response</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- PROJECT 2 -->
-                <div class="project-card">
-                    <h3>Project Title 2: TryHackMe - Blue Team Write-up</h3>
-                    <p>Completed the "Cyber Defense" pathway on TryHackMe, analyzing packet captures with Wireshark, investigating logs with Splunk, and performing forensic analysis on memory dumps. Documented findings in detailed write-ups.</p>
-                    <a href="https://github.com/your-username/your-writeup-repo-link" target="_blank">View Write-up</a>
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Wireshark</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Kali Linux</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Nmap</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="82"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                 <!-- PROJECT 3 -->
-                <div class="project-card">
-                    <h3>Project Title 3: Python Port Scanner Script</h3>
-                    <p>Developed a simple TCP port scanner using Python to identify open ports on a target host. This script helps in the initial reconnaissance phase of a security assessment.</p>
-                    <a href="https://github.com/your-username/python-scanner-repo" target="_blank">View Code on GitHub</a>
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <h3><i class="fas fa-code"></i> Scripting Languages</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Bash</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">PowerShell</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="65"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
 
-            <section id="skills">
-                <h2>Technical Skills</h2>
-                <ul class="skills-list">
-                    <!-- ADD/REMOVE SKILLS AS NEEDED -->
-                    <li>Wireshark</li>
-                    <li>Nmap</li>
-                    <li>Metasploit</li>
-                    <li>Security Onion</li>
-                    <li>Splunk</li>
-                    <li>Autopsy</li>
-                    <li>Linux/Unix</li>
-                    <li>Windows Server</li>
-                    <li>Python</li>
-                    <li>Bash Scripting</li>
-                    <li>Firewall Configuration</li>
-                    <li>Incident Response</li>
-                </ul>
-            </section>
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
+                    <h3><i class="fas fa-chart-bar"></i> Data Visualization</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Splunk</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">ELK Stack</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="60"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <section id="contact">
-                <h2>Connect With Me</h2>
-                <p class="connect-links">
-                    <a href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/your-username" target="_blank">GitHub</a>
-                    <!-- You can add a mailto link for email -->
-                    <a href="mailto:your.email@example.com">Email</a>
-                </p>
-            </section>
-        </main>
-    </div>
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Projects & Labs</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Firewall & IDS Configuration</h3>
+                    <p>Designed and implemented a comprehensive firewall ruleset and intrusion detection system for a simulated corporate network.</p>
+                    <div class="project-tools">
+                        <span>pfSense</span>
+                        <span>Snort</span>
+                        <span>Wireshark</span>
+                    </div>
+                    <button class="btn btn-outline">View Details</button>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>WAF Implementation</h3>
+                    <p>Configured and deployed a Web Application Firewall to protect against common web vulnerabilities and OWASP Top 10 threats.</p>
+                    <div class="project-tools">
+                        <span>ModSecurity</span>
+                        <span>OWASP CRS</span>
+                        <span>Apache</span>
+                    </div>
+                    <button class="btn btn-outline">View Details</button>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Advanced Penetration Testing</h3>
+                    <p>Conducted comprehensive penetration testing on a simulated network infrastructure, identifying critical vulnerabilities.</p>
+                    <div class="project-tools">
+                        <span>Metasploit</span>
+                        <span>Burp Suite</span>
+                        <span>Kali Linux</span>
+                    </div>
+                    <button class="btn btn-outline">View Details</button>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Digital Forensics</h3>
+                    <p>Performed digital forensics analysis on various media types, recovering deleted files and analyzing system artifacts.</p>
+                    <div class="project-tools">
+                        <span>Autopsy</span>
+                        <span>FTK Imager</span>
+                        <span>Volatility</span>
+                    </div>
+                    <button class="btn btn-outline">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Certifications</h2>
+            <div class="certifications-grid">
+                <div class="cert-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="cert-logo">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3>Google Cybersecurity Certificate</h3>
+                    <p>Professional certification covering foundational cybersecurity concepts and hands-on skills.</p>
+                    <a href="#" class="cert-link">View Certificate</a>
+                </div>
+
+                <div class="cert-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="cert-logo">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h3>CompTIA Security+</h3>
+                    <p>Globally recognized certification validating baseline cybersecurity skills.</p>
+                    <a href="#" class="cert-link">View Certificate</a>
+                </div>
+
+                <div class="cert-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="cert-logo">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3>EC-Council CEH</h3>
+                    <p>Certified Ethical Hacker certification demonstrating penetration testing skills.</p>
+                    <a href="#" class="cert-link">View Certificate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-date">2023 - Present</div>
+                    <div class="timeline-content">
+                        <h3>RBC Co-op</h3>
+                        <p class="timeline-role">Cybersecurity Analyst Intern</p>
+                        <p>Assisted in monitoring security alerts, conducting vulnerability assessments, and contributing to incident response procedures.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-date">2021 - 2022</div>
+                    <div class="timeline-content">
+                        <h3>Subway</h3>
+                        <p class="timeline-role">Team Member</p>
+                        <p>Developed strong customer service, teamwork, and time management skills in a fast-paced environment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume">
+        <div class="container">
+            <div class="resume-content" data-aos="fade-up">
+                <h2>Ready to Download My Resume?</h2>
+                <p>Get a comprehensive overview of my skills, experience, and qualifications.</p>
+                <a href="assets/resume.pdf" class="btn btn-primary" download>
+                    <i class="fas fa-download"></i> Download My Resume (PDF)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always interested in new opportunities and collaborations in the cybersecurity field.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>your.email@example.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (123) 456-7890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Ontario, Canada</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form" data-aos="fade-left">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2025 Nikhil Makwana. All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home" class="back-to-top">
+                        <i class="fas fa-arrow-up"></i> Back to Top
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
