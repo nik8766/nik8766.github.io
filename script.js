@@ -52,39 +52,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Profile Photo Handling - NEW FUNCTION
-function setupProfilePhoto() {
-    const profilePhoto = document.getElementById('profile-photo');
-    const imagePlaceholder = document.getElementById('image-placeholder');
-    
-    if (profilePhoto) {
-        // Check if image loads successfully
-        profilePhoto.addEventListener('load', function() {
-            console.log('Profile photo loaded successfully');
-            // Image loaded successfully - CSS will handle hiding the placeholder
-        });
-        
-        // Handle image loading errors
-        profilePhoto.addEventListener('error', function() {
-            console.warn('Profile photo failed to load, showing placeholder');
-            this.classList.add('error');
-            // Force show placeholder
-            if (imagePlaceholder) {
-                imagePlaceholder.style.display = 'flex';
-            }
-        });
-        
-        // Check if image source is empty or invalid
-        if (!profilePhoto.src || profilePhoto.src.includes('undefined')) {
-            console.warn('Profile photo source is invalid');
-            profilePhoto.classList.add('error');
-            if (imagePlaceholder) {
-                imagePlaceholder.style.display = 'flex';
-            }
-        }
-    }
-}
-
 // Skill bars animation
 function animateSkillBars() {
     const skillBars = document.querySelectorAll('.skill-progress');
@@ -243,7 +210,7 @@ if (contactForm) {
 function showNotification(message, type = 'info') {
     // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
-    if (existingNotification {
+    if (existingNotification) {
         existingNotification.remove();
     }
     
@@ -427,7 +394,6 @@ function checkFileExists(url) {
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initTypingAnimation();
-    setupProfilePhoto(); // NEW: Initialize profile photo handling
     setupResumeDownload();
     
     // Check if resume file exists on page load
@@ -435,17 +401,9 @@ document.addEventListener('DOMContentLoaded', function() {
         checkFileExists('assets/resume.pdf').then(exists => {
             if (!exists) {
                 console.warn('Resume file not found at: assets/resume.pdf');
+                // You could show a subtle warning in console instead of alerting user
             } else {
                 console.log('Resume file verified: assets/resume.pdf');
-            }
-        });
-        
-        // Check if profile photo exists
-        checkFileExists('assets/profile-photo.jpg').then(exists => {
-            if (!exists) {
-                console.warn('Profile photo not found at: assets/profile-photo.jpg - using placeholder');
-            } else {
-                console.log('Profile photo verified: assets/profile-photo.jpg');
             }
         });
     }, 1000);
@@ -465,7 +423,8 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('error', function(e) {
     if (e.target.tagName === 'IMG') {
         console.warn('Image failed to load:', e.target.src);
-        e.target.classList.add('error');
+        // You could set a placeholder image here
+        e.target.style.display = 'none';
     }
 }, true);
 
