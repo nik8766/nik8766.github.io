@@ -9,20 +9,18 @@ AOS.init({
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 
-if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        navToggle.classList.toggle('active');
-    });
+navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    navToggle.classList.toggle('active');
+});
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-        });
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
     });
-}
+});
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -41,14 +39,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Navbar background on scroll
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(10, 10, 15, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
-        } else {
-            navbar.style.background = 'rgba(10, 10, 15, 0.95)';
-            navbar.style.boxShadow = 'none';
-        }
+    if (window.scrollY > 100) {
+        navbar.style.background = 'rgba(10, 10, 15, 0.98)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+    } else {
+        navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+        navbar.style.boxShadow = 'none';
     }
 });
 
@@ -70,16 +66,16 @@ const observerOptions = {
     rootMargin: '0px'
 };
 
-if (skillsSection) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateSkillBars();
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateSkillBars();
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
 
+if (skillsSection) {
     observer.observe(skillsSection);
 }
 
@@ -106,64 +102,6 @@ function initTypingAnimation() {
     }, 500);
 }
 
-// Enhanced Resume Download Functionality
-function setupResumeDownload() {
-    const resumeDownload = document.querySelector('a[download="Nikhil_Makwana_Resume.pdf"]');
-    
-    if (resumeDownload) {
-        resumeDownload.addEventListener('click', function(e) {
-            // Check if file exists before proceeding with download
-            fetch(this.href)
-                .then(response => {
-                    if (!response.ok) {
-                        e.preventDefault();
-                        showNotification('Resume file not found. Please ensure resume.pdf is in the assets folder.', 'error');
-                        console.error('Resume file not found at:', this.href);
-                    } else {
-                        console.log('Resume file found, download proceeding...');
-                        // Optional: Track download event
-                        trackDownload('resume');
-                    }
-                })
-                .catch(error => {
-                    e.preventDefault();
-                    showNotification('Error accessing resume file. Please try the "View Resume" option or check your file path.', 'error');
-                    console.error('Resume download error:', error);
-                });
-        });
-    }
-
-    // Also set up the view resume button
-    const viewResume = document.querySelector('a[href="assets/resume.pdf"][target="_blank"]');
-    if (viewResume) {
-        viewResume.addEventListener('click', function(e) {
-            fetch(this.href)
-                .then(response => {
-                    if (!response.ok) {
-                        e.preventDefault();
-                        showNotification('Resume file not found. Please ensure resume.pdf is in the assets folder.', 'error');
-                    }
-                })
-                .catch(error => {
-                    e.preventDefault();
-                    showNotification('Error opening resume file.', 'error');
-                });
-        });
-    }
-}
-
-// Track download events (optional - for analytics)
-function trackDownload(fileType) {
-    // You can integrate with Google Analytics here
-    console.log(`Download tracked: ${fileType}`);
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'download', {
-            'event_category': 'file',
-            'event_label': fileType
-        });
-    }
-}
-
 // Contact form handling
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
@@ -182,31 +120,14 @@ if (contactForm) {
             return;
         }
         
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            showNotification('Please enter a valid email address.', 'error');
-            return;
-        }
-        
         // Here you would typically send the data to Formspree or EmailJS
         // For now, we'll just show a success message
         showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-        
-        // Reset form
         this.reset();
-        
-        // Optional: Track form submission
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'contact_form_submission', {
-                'event_category': 'engagement',
-                'event_label': 'Contact Form'
-            });
-        }
     });
 }
 
-// Enhanced Notification System
+// Notification system
 function showNotification(message, type = 'info') {
     // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
@@ -222,123 +143,81 @@ function showNotification(message, type = 'info') {
         <button class="notification-close">&times;</button>
     `;
     
-    // Add styles dynamically if not already in CSS
-    if (!document.querySelector('#notification-styles')) {
-        const notificationStyles = document.createElement('style');
-        notificationStyles.id = 'notification-styles';
-        notificationStyles.textContent = `
-            .notification {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 1rem 1.5rem;
-                border-radius: 5px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-                z-index: 10000;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                max-width: 400px;
-                animation: slideInRight 0.3s ease;
-                font-weight: 500;
-            }
-            
-            .notification-success {
-                background: #00ff88;
-                color: #0a0a0f;
-                border-left: 4px solid #00cc6a;
-            }
-            
-            .notification-error {
-                background: #ff2a6d;
-                color: #ffffff;
-                border-left: 4px solid #cc2257;
-            }
-            
-            .notification-info {
-                background: #00d9ff;
-                color: #0a0a0f;
-                border-left: 4px solid #00a3cc;
-            }
-            
-            .notification-close {
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                cursor: pointer;
-                padding: 0;
-                width: 20px;
-                height: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0.8;
-                transition: opacity 0.3s ease;
-            }
-            
-            .notification-close:hover {
-                opacity: 1;
-            }
-            
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideOutRight {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(notificationStyles);
-    }
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#00ff88' : '#ff2a6d'};
+        color: #0a0a0f;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        max-width: 400px;
+        animation: slideInRight 0.3s ease;
+    `;
     
-    // Apply specific styles based on type
-    const backgroundColor = type === 'success' ? '#00ff88' : type === 'error' ? '#ff2a6d' : '#00d9ff';
-    const textColor = type === 'error' ? '#ffffff' : '#0a0a0f';
-    
-    notification.style.background = backgroundColor;
-    notification.style.color = textColor;
-    
-    document.body.appendChild(notification);
-    
-    // Close button functionality
+    // Close button
     const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.style.color = textColor;
+    closeBtn.style.cssText = `
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `;
     
     closeBtn.addEventListener('click', () => {
         notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
-        }, 300);
+        setTimeout(() => notification.remove(), 300);
     });
+    
+    document.body.appendChild(notification);
     
     // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentNode) {
             notification.style.animation = 'slideOutRight 0.3s ease';
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.remove();
-                }
-            }, 300);
+            setTimeout(() => notification.remove(), 300);
         }
     }, 5000);
 }
+
+// Add CSS for notifications
+const notificationStyles = document.createElement('style');
+notificationStyles.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(notificationStyles);
 
 // Back to top functionality
 const backToTop = document.querySelector('.back-to-top');
@@ -350,18 +229,19 @@ if (backToTop) {
             behavior: 'smooth'
         });
     });
-    
-    // Show/hide back to top button based on scroll position
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            backToTop.style.opacity = '1';
-            backToTop.style.visibility = 'visible';
-        } else {
-            backToTop.style.opacity = '0';
-            backToTop.style.visibility = 'hidden';
-        }
-    });
 }
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initTypingAnimation();
+    
+    // Add loading animation
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+    }, 100);
+});
 
 // Add some interactive effects
 document.addEventListener('mousemove', (e) => {
@@ -383,62 +263,3 @@ document.addEventListener('mousemove', (e) => {
         }
     });
 });
-
-// File existence checker (utility function)
-function checkFileExists(url) {
-    return fetch(url, { method: 'HEAD' })
-        .then(response => response.ok)
-        .catch(() => false);
-}
-
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initTypingAnimation();
-    setupResumeDownload();
-    
-    // Check if resume file exists on page load
-    setTimeout(() => {
-        checkFileExists('assets/resume.pdf').then(exists => {
-            if (!exists) {
-                console.warn('Resume file not found at: assets/resume.pdf');
-                // You could show a subtle warning in console instead of alerting user
-            } else {
-                console.log('Resume file verified: assets/resume.pdf');
-            }
-        });
-    }, 1000);
-    
-    // Add loading animation
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
-    
-    // Initialize any other components
-    console.log('Portfolio initialized successfully');
-});
-
-// Error handling for images
-window.addEventListener('error', function(e) {
-    if (e.target.tagName === 'IMG') {
-        console.warn('Image failed to load:', e.target.src);
-        // You could set a placeholder image here
-        e.target.style.display = 'none';
-    }
-}, true);
-
-// Performance monitoring (optional)
-if ('performance' in window) {
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const perfData = performance.timing;
-            const loadTime = perfData.loadEventEnd - perfData.navigationStart;
-            console.log(`Page load time: ${loadTime}ms`);
-            
-            if (loadTime > 3000) {
-                console.warn('Page load time is slow. Consider optimizing assets.');
-            }
-        }, 0);
-    });
-}
