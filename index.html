@@ -19,10 +19,11 @@
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
-                <a href="#certifications" class="nav-link">Certifications</a>
                 <a href="#experience" class="nav-link">Experience</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             <div class="nav-toggle" id="nav-toggle">
@@ -51,6 +52,7 @@
                 <p class="hero-tagline">"Turning security challenges into digital resilience."</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#resume" class="btn btn-secondary">Resume</a>
                     <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                 </div>
             </div>
@@ -67,16 +69,10 @@
             <h2 class="section-title" data-aos="fade-up">About Me</h2>
             <div class="about-content">
                 <div class="about-text" data-aos="fade-right">
-                    <p>I am a recent graduate from Fleming College with an Advanced Diploma in Computer Security and Investigations, equipped with comprehensive knowledge in cybersecurity principles, network security, and digital forensics.</p>
-                    <p>My passion lies in identifying vulnerabilities, implementing robust security measures, and staying ahead of emerging threats in the digital landscape.</p>
-                    <div class="education">
-                        <h3>Education</h3>
-                        <div class="education-item">
-                            <h4>Advanced Diploma in Computer Security and Investigations</h4>
-                            <p class="institution">Fleming College</p>
-                            <p class="date">2022 - 2024</p>
-                        </div>
-                    </div>
+                    <p>I am a recent graduate from Fleming College with an Advanced Diploma in Computer Security and Investigations.</p>
+                    <p>I am passionate about identifying vulnerabilities, building secure network architectures, and strengthening digital resilience through proactive defense strategies.</p>
+                    <p>My hands-on experience spans network security, vulnerability management, digital forensics, and incident response, using real-world tools and techniques learned across more than 50 cybersecurity labs.</p>
+                    <p>I aim to contribute to organizations where I can apply both my technical troubleshooting and cybersecurity expertise to detect, respond, and prevent modern security threats.</p>
                 </div>
                 <div class="about-stats" data-aos="fade-left">
                     <div class="stat">
@@ -96,13 +92,181 @@
         </div>
     </section>
 
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Projects & Labs</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>OWASP Web Application Firewall (WAF) Implementation</h3>
+                    <p>Overview:</p>
+                    <p>Deployed and configured an open-source WAF using ModSecurity within a Docker-based LAMP stack to protect against SQLi, XSS, RCE, and brute-force attacks.</p>
+                    <p>Highlights:</p>
+                    <p>Developed and tuned custom ModSecurity rules. Conducted penetration testing using Burp Suite and OWASP DVWA. Authored detailed setup and attack simulation documentation.</p>
+                    <div class="project-tools">
+                        <span>Docker</span>
+                        <span>Apache</span>
+                        <span>MySQL</span>
+                        <span>ModSecurity</span>
+                        <span>Burp Suite</span>
+                        <span>Python</span>
+                        <span>Bash</span>
+                    </div>
+                    <a href="https://github.com/nik8766/custom-waf-modsecurity" class="btn btn-outline">View Project</a>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>Advanced Penetration Testing - Malicious Word Macro Attack</h3>
+                    <p>Overview:</p>
+                    <p>Simulated a spear-phishing attack using a malicious Word document with a VBA macro reverse shell and web beacon in a controlled lab.</p>
+                    <p>Highlights:</p>
+                    <p>Created payloads using msfvenom and handled sessions via Metasploit. Embedded tracking beacons using Python HTTP server. Demonstrated red-team attack methodology safely in a lab.</p>
+                    <div class="project-tools">
+                        <span>Kali Linux</span>
+                        <span>Metasploit</span>
+                        <span>Python</span>
+                        <span>MS Word (VBA)</span>
+                    </div>
+                    <a href="https://github.com/nik8766/Malicious-Macro-Reverse-Shell" class="btn btn-outline">View Project</a>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>Ransomware Incident Response Playbook</h3>
+                    <p>Overview:</p>
+                    <p>Developed a structured ransomware incident response playbook for detecting, containing, mitigating, and recovering from ransomware attacks in an enterprise setting.</p>
+                    <p>Highlights:</p>
+                    <p>Defined incident detection methods using SIEM/EDR logs. Created detailed containment, recovery, and communication procedures. Integrated business continuity and regulatory compliance steps.</p>
+                    <div class="project-tools">
+                        <span>Incident Response</span>
+                        <span>SIEM</span>
+                        <span>EDR</span>
+                        <span>Policy Documentation</span>
+                        <span>Risk Management</span>
+                    </div>
+                    <a href="https://github.com/nik8766/Phishing-Incident-Response-Playbook" class="btn btn-outline">View Project</a>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>IPTables Firewall & Traffic Forwarding Lab</h3>
+                    <p>Overview:</p>
+                    <p>Configured and tested iptables firewall rules in Linux to control SSH and Telnet traffic, demonstrating secure traffic routing and packet forwarding through a gateway using DNAT.</p>
+                    <p>Highlights:</p>
+                    <p>Designed multiple scripts for restrictive and permissive rule sets. Implemented IP forwarding and DNAT for routed network traffic. Analyzed and validated packet flows using Wireshark and iptables logs.</p>
+                    <div class="project-tools">
+                        <span>Ubuntu</span>
+                        <span>iptables</span>
+                        <span>Wireshark</span>
+                        <span>SSH</span>
+                        <span>Netcat</span>
+                    </div>
+                    <a href="https://github.com/nik8766/Firewall_Project" class="btn btn-outline">View Project</a>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Secure VPN Tunnel Setup with OpenVPN</h3>
+                    <p>Overview:</p>
+                    <p>Established a secure SSL VPN tunnel between two hosts using OpenVPN and certificate-based authentication for encrypted communication.</p>
+                    <p>Highlights:</p>
+                    <p>Configured routing and mutual certificate validation with EasyRSA. Verified encryption integrity using Wireshark. Demonstrated secure point-to-point communication over untrusted networks.</p>
+                    <div class="project-tools">
+                        <span>OpenVPN</span>
+                        <span>EasyRSA</span>
+                        <span>Ubuntu</span>
+                        <span>Wireshark</span>
+                    </div>
+                    <a href="https://github.com/nik8766/secure-vpn-tunnel" class="btn btn-outline">View Project</a>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Python Automation - NASA APOD Desktop App</h3>
+                    <p>Overview:</p>
+                    <p>Developed a Python application that automatically downloads and sets NASA's Astronomy Picture of the Day (APOD) as the desktop wallpaper using NASA's public API.</p>
+                    <p>Highlights:</p>
+                    <p>Integrated SQLite database for metadata caching. Automated system background updates and local image storage. Optional GUI built with Tkinter for browsing and selecting images.</p>
+                    <div class="project-tools">
+                        <span>Python</span>
+                        <span>SQLite</span>
+                        <span>Tkinter</span>
+                        <span>REST API</span>
+                        <span>Regex</span>
+                        <span>Hashlib</span>
+                    </div>
+                    <a href="https://github.com/nik8766/Scripting-Project" class="btn btn-outline">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-date">2023 - 2025</div>
+                    <div class="timeline-content">
+                        <h3>Technical Support Representative - IT Student Services</h3>
+                        <p class="timeline-role">Fleming College | Peterborough, ON | September 2023 - April 2025</p>
+                        <p>• Provided technical assistance to students and staff for system access, software installations, and network connectivity.</p>
+                        <p>• Supported user authentication and MFA troubleshooting to ensure account security.</p>
+                        <p>• Collaborated with IT teams to maintain endpoint security compliance and apply patches.</p>
+                        <p>• Reported and documented suspicious activities, contributing to improved system security awareness.</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+     <section id="Education" class="Education">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-date">2023 - 2025</div>
+                    <div class="timeline-content">
+                    <h3>Advanced Diploma in Computer Security and Investigations</h3>
+                    <p class="institution">Fleming College | January 2023 - April 2025</p>
+                    <h3>Focus Areas & Courses:</h3>
+                    <p>• Network Security, Digital Forensics, Cloud Computing, Penetration Testing, Incident Response.</p>
+                    <p>• Hands-on experience through 50+ practical labs covering vulnerabilities, firewall configuration, threat detection, and secure network design</p>
+                    <h3>Key Highlights:</h3>
+                    <p>• Developed a strong security mindset with continuous practice and experimentation</p>
+                    <p>• Gained proficiency in tools like Kali Linux, Wireshark, Splunk, Docker, and ModSecurity</p>
+                    <p>• Completed end-to-end labs simulating real-world cybersecurity scenarios</p>
+                    </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Technical Skills</h2>
             <div class="skills-grid">
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-                    <h3><i class="fas fa-network-wired"></i> Technical Skills</h3>
+                    <h3><i class="fas fa-shield-alt"></i> Cybersecurity Domains</h3>
                     <div class="skill-list">
                         <div class="skill-item">
                             <span class="skill-name">Network Security</span>
@@ -111,15 +275,21 @@
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">Vulnerability Assessment</span>
+                            <span class="skill-name">Incident Response</span>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-width="85"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">Incident Response</span>
+                            <span class="skill-name">Vulnerability Management</span>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="80"></div>
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Digital Forensics</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="83"></div>
                             </div>
                         </div>
                     </div>
@@ -141,21 +311,51 @@
                             </div>
                         </div>
                         <div class="skill-item">
+                            <span class="skill-name">pfSense</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
                             <span class="skill-name">Nmap</span>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="82"></div>
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Snort</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Splunk</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="87"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">ELK Stack</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">ModSecurity</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="89"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
-                    <h3><i class="fas fa-code"></i> Scripting Languages</h3>
+                    <h3><i class="fas fa-terminal"></i> Scripting & Automation</h3>
                     <div class="skill-list">
                         <div class="skill-item">
                             <span class="skill-name">Python</span>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="75"></div>
+                                <div class="skill-progress" data-width="85"></div>
                             </div>
                         </div>
                         <div class="skill-item">
@@ -167,92 +367,58 @@
                         <div class="skill-item">
                             <span class="skill-name">PowerShell</span>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="65"></div>
+                                <div class="skill-progress" data-width="75"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
-                    <h3><i class="fas fa-chart-bar"></i> Data Visualization</h3>
+                    <h3><i class="fas fa-server"></i>System Administration</h3>
                     <div class="skill-list">
                         <div class="skill-item">
-                            <span class="skill-name">Splunk</span>
+                            <span class="skill-name">Linux (Ubuntu, Kali)</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Windows Server</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Docker</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="500">
+                    <h3><i class="fas fa-chart-bar"></i>Data Visualization & Analytics</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Excel</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Tableau</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">PoweBI</span>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-width="70"></div>
                             </div>
                         </div>
-                        <div class="skill-item">
-                            <span class="skill-name">ELK Stack</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="60"></div>
-                            </div>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Projects & Labs</h2>
-            <div class="projects-grid">
-                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project-icon">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <h3>Firewall & IDS Configuration</h3>
-                    <p>Designed and implemented a comprehensive firewall ruleset and intrusion detection system for a simulated corporate network.</p>
-                    <div class="project-tools">
-                        <span>pfSense</span>
-                        <span>Snort</span>
-                        <span>Wireshark</span>
-                    </div>
-                    <button class="btn btn-outline">View Details</button>
-                </div>
-
-                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="project-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>WAF Implementation</h3>
-                    <p>Configured and deployed a Web Application Firewall to protect against common web vulnerabilities and OWASP Top 10 threats.</p>
-                    <div class="project-tools">
-                        <span>ModSecurity</span>
-                        <span>OWASP CRS</span>
-                        <span>Apache</span>
-                    </div>
-                    <button class="btn btn-outline">View Details</button>
-                </div>
-
-                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="project-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>Advanced Penetration Testing</h3>
-                    <p>Conducted comprehensive penetration testing on a simulated network infrastructure, identifying critical vulnerabilities.</p>
-                    <div class="project-tools">
-                        <span>Metasploit</span>
-                        <span>Burp Suite</span>
-                        <span>Kali Linux</span>
-                    </div>
-                    <button class="btn btn-outline">View Details</button>
-                </div>
-
-                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="project-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Digital Forensics</h3>
-                    <p>Performed digital forensics analysis on various media types, recovering deleted files and analyzing system artifacts.</p>
-                    <div class="project-tools">
-                        <span>Autopsy</span>
-                        <span>FTK Imager</span>
-                        <span>Volatility</span>
-                    </div>
-                    <button class="btn btn-outline">View Details</button>
                 </div>
             </div>
         </div>
@@ -261,62 +427,47 @@
     <!-- Certifications Section -->
     <section id="certifications" class="certifications">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Certifications</h2>
+            <h2 class="section-title" data-aos="fade-up">Licenses & Certifications</h2>
             <div class="certifications-grid">
                 <div class="cert-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="cert-logo">
                         <i class="fab fa-google"></i>
                     </div>
-                    <h3>Google Cybersecurity Certificate</h3>
-                    <p>Professional certification covering foundational cybersecurity concepts and hands-on skills.</p>
+                    <h3>Google Cybersecurity Certificate | Issued: July 2024</h3>
+                    <p>Built a strong foundation in cybersecurity principles: network security, vulnerability management, risk assessment, and practical application of security tools.</p>
                     <a href="https://www.coursera.org/account/accomplishments/professional-cert/H2NT9MXRXZLH" class="cert-link">View Certificate</a>
                 </div>
 
                 <div class="cert-card" data-aos="zoom-in" data-aos-delay="200">
                     <div class="cert-logo">
-                        <i class="fas fa-shield-halved"></i>
+                        <i class="fas fa-briefcase"></i>
                     </div>
-                    <h3>CompTIA Security+</h3>
-                    <p>Globally recognized certification validating baseline cybersecurity skills.</p>
-                    <a href="#" class="cert-link">View Certificate</a>
+                    <h3>Deloitte - Cyber Job Simulation | Issued: Oct 2025</h3>
+                    <p>Gained hands-on experience simulating corporate cybersecurity tasks including threat analysis, incident response, and risk management. Learned how security teams operate in real-world scenarios.</p>
+                    <a href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/E9pA6qsdbeyEkp3ti_9PBTqmSxAf6zZTseP_AzBrr9qeyS6ZS5NGC_1760369336814_completion_certificate.pdf" class="cert-link">View Certificate</a>
                 </div>
 
                 <div class="cert-card" data-aos="zoom-in" data-aos-delay="300">
                     <div class="cert-logo">
-                        <i class="fas fa-user-secret"></i>
+                        <i class="fas fa-credit-card"></i>
                     </div>
-                    <h3>EC-Council CEH</h3>
-                    <p>Certified Ethical Hacker certification demonstrating penetration testing skills.</p>
-                    <a href="#" class="cert-link">View Certificate</a>
+                    <h3>Mastercard - Cybersecurity Job Simulation | Issued: May 2024</h3>
+                    <p>Simulated real-world corporate cybersecurity tasks including monitoring, incident handling, and applying best practices to protect organizational assets.</p>
+                    <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/mastercard/vcKAB5yYAgvemepGQ_Mastercard_AzBrr9qeyS6ZS5NGC_1716479253253_completion_certificate.pdf" class="cert-link">View Certificate</a>
+                </div>
+
+                <div class="cert-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="cert-logo">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Qualys PCI Compliance Certificate | Issued: July 2024 ; Expires: July 2026</h3>
+                    <p>Developed knowledge of PCI DSS compliance standards, vulnerability scanning, and security assessment processes for maintaining regulatory security.</p>
+                    <a href="assets/PCI.pdf" class="cert-link" target="_blank">View Certificate</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-date">2023 - Present</div>
-                    <div class="timeline-content">
-                        <h3>RBC Co-op</h3>
-                        <p class="timeline-role">Cybersecurity Analyst Intern</p>
-                        <p>Assisted in monitoring security alerts, conducting vulnerability assessments, and contributing to incident response procedures.</p>
-                    </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-date">2021 - 2022</div>
-                    <div class="timeline-content">
-                        <h3>Subway</h3>
-                        <p class="timeline-role">Team Member</p>
-                        <p>Developed strong customer service, teamwork, and time management skills in a fast-paced environment.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Resume Section -->
     <section id="resume" class="resume">
@@ -338,15 +489,15 @@
             <div class="contact-content">
                 <div class="contact-info" data-aos="fade-right">
                     <h3>Let's Connect</h3>
-                    <p>I'm always interested in new opportunities and collaborations in the cybersecurity field.</p>
+                    <p>I am always interested in new opportunities and collaborations in the cybersecurity field.</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>your.email@example.com</span>
+                            <span>nikhilmakwana0512@gmail.com</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+1 (123) 456-7890</span>
+                            <span>+1 (437) 299-8006</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -359,7 +510,7 @@
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form" data-aos="fade-left">
+                <form action="https://formspree.io/f/mldpkgnn" method="POST" class="contact-form" id="contact-form" data-aos="fade-left">
                     <div class="form-group">
                         <input type="text" id="name" name="name" required>
                         <label for="name">Your Name</label>
