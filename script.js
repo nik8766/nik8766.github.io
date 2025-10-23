@@ -2,23 +2,27 @@
 AOS.init({
     duration: 1000,
     once: true,
-    offset: 100
+    offset: 100,
+    easing: 'ease-in-out' // Smoother animation curve
 });
 
 // Mobile Navigation Toggle
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
+const navLinks = document.querySelectorAll('.nav-link');
 
 navToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
     navToggle.classList.toggle('active');
+    document.body.classList.toggle('no-scroll'); // Prevent body scroll when menu is open
 });
 
 // Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(link => {
+navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
         navToggle.classList.remove('active');
+        document.body.classList.remove('no-scroll');
     });
 });
 
@@ -26,116 +30,150 @@ document.querySelectorAll('.nav-link').forEach(link => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            window.scrollTo({
+                top: target.offsetTop - 70, // Adjust for fixed navbar height
+                behavior: 'smooth'
             });
         }
     });
 });
 
-// Navbar background on scroll
+// Navbar background and active link on scroll
+const navbar = document.getElementById('navbar');
+const sections = document.querySelectorAll('section');
+
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(10, 10, 15, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+    // Navbar background and shadow
+    if (window.scrollY > 80) { // Reduced scroll threshold
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.background = 'rgba(10, 10, 15, 0.95)';
-        navbar.style.boxShadow = 'none';
+        navbar.classList.remove('scrolled');
     }
+
+    // Active link highlighting
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 80; // Adjust for navbar
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+        }
+    });
 });
 
 // Skill bars animation
 function animateSkillBars() {
     const skillBars = document.querySelectorAll('.skill-progress');
-    
     skillBars.forEach(bar => {
         const width = bar.getAttribute('data-width');
-        bar.style.width = width + '%';
+        // Reset width to 0 before setting to enable re-animation on repeated visibility
+        bar.style.width = '0%'; 
+        setTimeout(() => {
+            bar.style.width = width + '%';
+        }, 100); // Small delay to ensure reset takes effect
     });
 }
 
 // Intersection Observer for skill bars
 const skillsSection = document.querySelector('.skills');
-const observerOptions = {
-    root: null,
-    threshold: 0.3,
-    rootMargin: '0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateSkillBars();
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
 if (skillsSection) {
+    const observerOptions = {
+        root: null,
+        threshold: 0.5, // Trigger when 50% of the section is visible
+        rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSkillBars();
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, observerOptions);
+
     observer.observe(skillsSection);
 }
 
+
 // Typing animation for hero title
 function initTypingAnimation() {
-    const typingText = document.querySelector('.typing-text');
-    if (!typingText) return;
+    const typingTextElement = document.querySelector('.typing-text');
+    if (!typingTextElement) return;
 
     const text = 'Nikhil Makwana';
     let index = 0;
     
     function type() {
         if (index < text.length) {
-            typingText.textContent += text.charAt(index);
+            typingTextElement.textContent += text.charAt(index);
             index++;
-            setTimeout(type, 100);
+            setTimeout(type, 100); // Typing speed
         }
     }
     
     // Start typing after a short delay
     setTimeout(() => {
-        typingText.textContent = '';
+        typingTextElement.textContent = ''; // Clear existing text if any
         type();
     }, 500);
 }
 
 // Contact form handling
 const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Get form data
         const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const message = formData.get('message');
+        const url = this.action;
         
-        // Simple validation
-        if (!name || !email || !message) {
-            showNotification('Please fill in all fields.', 'error');
-            return;
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                this.reset();
+            } else {
+                const data = await response.json();
+                if (data.errors) {
+                    showNotification(data.errors.map(error => error.message).join(', '), 'error');
+                } else {
+                    showNotification('Oops! There was a problem sending your message.', 'error');
+                }
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            showNotification('Network error. Please try again later.', 'error');
         }
-        
-        // Here you would typically send the data to Formspree or EmailJS
-        // For now, we'll just show a success message
-        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-        this.reset();
     });
 }
 
 // Notification system
 function showNotification(message, type = 'info') {
-    // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
         existingNotification.remove();
     }
     
-    // Create new notification
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -143,81 +181,90 @@ function showNotification(message, type = 'info') {
         <button class="notification-close">&times;</button>
     `;
     
-    // Add styles
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? '#00ff88' : '#ff2a6d'};
-        color: #0a0a0f;
+        background: ${type === 'success' ? 'var(--success-color)' : 'var(--danger-color)'};
+        color: var(--darker-bg);
         padding: 1rem 1.5rem;
-        border-radius: 5px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         z-index: 10000;
         display: flex;
         align-items: center;
         gap: 1rem;
-        max-width: 400px;
-        animation: slideInRight 0.3s ease;
+        max-width: 350px;
+        animation: slideInRight 0.4s ease-out;
+        font-weight: 500;
+        text-shadow: none;
     `;
     
-    // Close button
     const closeBtn = notification.querySelector('.notification-close');
     closeBtn.style.cssText = `
         background: none;
         border: none;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        line-height: 1;
         cursor: pointer;
         padding: 0;
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: var(--darker-bg);
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
     `;
     
     closeBtn.addEventListener('click', () => {
-        notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
+        notification.style.animation = 'slideOutRight 0.4s ease-in forwards';
+        setTimeout(() => notification.remove(), 400);
     });
     
     document.body.appendChild(notification);
     
-    // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentNode) {
-            notification.style.animation = 'slideOutRight 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
+            notification.style.animation = 'slideOutRight 0.4s ease-in forwards';
+            setTimeout(() => notification.remove(), 400);
         }
     }, 5000);
 }
 
-// Add CSS for notifications
-const notificationStyles = document.createElement('style');
-notificationStyles.textContent = `
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
+// Add CSS for notifications if not already present
+if (!document.getElementById('notification-styles')) {
+    const notificationStyles = document.createElement('style');
+    notificationStyles.id = 'notification-styles';
+    notificationStyles.textContent = `
+        @keyframes slideInRight {
+            from {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
-        to {
-            transform: translateX(0);
-            opacity: 1;
+        
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(120%);
+                opacity: 0;
+            }
         }
-    }
-    
-    @keyframes slideOutRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
+        .no-scroll {
+            overflow: hidden;
         }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(notificationStyles);
+    `;
+    document.head.appendChild(notificationStyles);
+}
 
 // Back to top functionality
 const backToTop = document.querySelector('.back-to-top');
@@ -231,19 +278,7 @@ if (backToTop) {
     });
 }
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initTypingAnimation();
-    
-    // Add loading animation
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
-});
-
-// Add some interactive effects
+// Interactive card effects (parallax on mousemove)
 document.addEventListener('mousemove', (e) => {
     const cards = document.querySelectorAll('.project-card, .cert-card');
     cards.forEach(card => {
@@ -254,12 +289,30 @@ document.addEventListener('mousemove', (e) => {
         if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            const angleY = (x - centerX) / 25;
-            const angleX = (centerY - y) / 25;
+            const tiltX = (y - centerY) / 20; // Adjust sensitivity
+            const tiltY = (centerX - x) / 20; // Adjust sensitivity
             
-            card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.02, 1.02, 1.02)`;
+            card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+            card.style.boxShadow = `
+                ${-tiltY/2}px ${tiltX/2}px 25px rgba(0,0,0,0.5),
+                ${-tiltY/4}px ${tiltX/4}px 10px rgba(0, 224, 255, 0.2)
+            `; // Add a more dynamic shadow
         } else {
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            card.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)'; // Reset to default
         }
     });
+});
+
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initTypingAnimation();
+    
+    // Add loading animation (fade in body)
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 0.7s ease-out';
+        document.body.style.opacity = '1';
+    }, 100);
 });
